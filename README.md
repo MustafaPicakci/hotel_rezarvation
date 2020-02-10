@@ -33,7 +33,7 @@ This project is a Flask web app.
 # Contributors
 - [İshak Küden](https://github.com/IshaKuden)
 - [Mustafa Pıçakçı](https://github.com/MustafaPicakci)
-- [Mustafa Arı]()
+- [Mustafa Arı](https://github.com/mustafaari42)
 - [Ömer Şahin]()
 
 # Usage
