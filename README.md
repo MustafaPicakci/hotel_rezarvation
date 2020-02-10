@@ -27,5 +27,7 @@ This project is a Flask web app.
 - User can view and delete old reservations
 
 # Contributors
- You can even [link to Google!](http://google.com)
-
+- [İshak Küden](https://github.com/IshaKuden)
+- [Mustafa Pıçakçı](https://github.com/MustafaPicakci)
+- [Mustafa Arı]()
+- [Ömer Şahin]()
