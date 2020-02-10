@@ -35,3 +35,8 @@ This project is a Flask web app.
 - [Mustafa Pıçakçı](https://github.com/MustafaPicakci)
 - [Mustafa Arı]()
 - [Ömer Şahin]()
+
+# Usage
+- Download the required modules with **pip**
+- Run **app2.py** with python
+- Visit localhost:5000 or http://127.0.0.1:5000/
