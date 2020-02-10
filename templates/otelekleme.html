@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>OtelAra.com</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../static/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="cssload-container">
+            <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="palatin-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="palatinNav">
+
+                        <!-- Nav brand -->
+                        <a href="/" class="nav-brand"><img src="../static/img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li class="active"><a href="{{url_for('anasayfa')}}">Ana Sayfa</a></li>
+                                    <li><a href="{{url_for('otellerigetir')}}">Oteller</a></li>
+                                    <li><a href="#iletisim">İletişim</a></li>
+                                    {% if current_user.is_authenticated %}
+                                    {% if rol=="Admin" %}
+                                    <li><a href="{{url_for('otelekleme')}}">Otel Ekleme</a></li>
+                                    <li><a href="{{url_for('odaekleme')}}">Oda Ekle</a></li>
+                                    {% endif %}
+                                    <li><a href="/rezervasyonlarim">Rezervasyonlar</a></li>
+                                    <li><a href="{{url_for('user.logout')}}">Çıkış Yap</a></li>
+                                    {% else %}
+                                    <li><a href="{{url_for('login')}}">Giriş Yap</a></li>
+                                    {% endif %}
+                                </ul>
+                                <!-- Button -->
+
+                                {% if current_user.is_authenticated %}
+                                <div class="menu-btn">
+                                    <a href="{{url_for('sepetigetir')}}" class="btn palatin-btn">Sepetim</a>
+                                </div>
+
+                                {% endif %}
+
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img d-flex align-items-center justify-content-center"
+        style="background-image: url(../static/img/bg-img/bg-8.jpg);">
+        <div class="bradcumbContent">
+            <h2>OTEL EKLE</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-information-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    <br>
+                    <div class="{{alert_tur}}" role="alert">
+
+                        <center>{{mesaj}}</center>
+
+                    </div>
+                    <form style="padding:10%" action="{{url_for('OtelEkle')}}" method="POST">
+
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Otel Adı :</label>
+                            <input type="text" name="isim" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Otel adını girin..">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Adres :</label>
+                            <textarea name="adres" class="form-control" id="exampleFormControlTextarea1"
+                                rows="3"></textarea>
+                        </div>
+                        <label for="exampleFormControlSelect1">Yıldız :</label>
+                        <div class="form-group">
+
+                            <select name="yildiz" class="form-control" id="exampleFormControlSelect1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <br><br>
+                        <center><button type="submit" class="btn btn-primary">Oteli Ekle</button></center>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-lg-5">
+                    <div class="footer-widget-area mt-50">
+
+                    </div>
+                </div>
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="footer-widget-area mt-50">
+                        <h6 class="widget-title mb-5">Find us on the map</h6>
+                        <img src="../static/img/bg-img/footer-map.png" alt="">
+                    </div>
+                </div>
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-md-6 col-lg-3">
+
+                </div>
+
+                <!-- Copywrite Text -->
+                <div class="col-12">
+                    <div class="copywrite-text mt-30">
+                        <p><a href="#">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                                template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="../static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="../static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="../static/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="../static/js/active.js"></script>
+</body>
+
+</html>

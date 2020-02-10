@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>OtelAra.com</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../static/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="cssload-container">
+            <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="palatin-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="palatinNav">
+
+                        <!-- Nav brand -->
+                        <a href="/" class="nav-brand"><img src="../static/img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li class="active"><a href="{{url_for('anasayfa')}}">Ana Sayfa</a></li>
+                                    <li><a href="{{url_for('otellerigetir')}}">Oteller</a></li>
+                                    <li><a href="#iletisim">İletişim</a></li>
+                                    {% if current_user.is_authenticated %}
+                                    {% if rol=="Admin" %}
+                                    <li><a href="{{url_for('otelekleme')}}">Otel Ekleme</a></li>
+                                    <li><a href="{{url_for('odaekleme')}}">Oda Ekle</a></li>
+                                    {% endif %}
+                                    <li><a href="/rezervasyonlarim">Rezervasyonlar</a></li>
+                                    <li><a href="{{url_for('user.logout')}}">Çıkış Yap</a></li>
+                                    {% else %}
+                                    <li><a href="{{url_for('login')}}">Giriş Yap</a></li>
+                                    {% endif %}
+                                </ul>
+                                <!-- Button -->
+
+                                {% if current_user.is_authenticated %}
+                                <div class="menu-btn">
+                                    <a href="{{url_for('sepetigetir')}}" class="btn palatin-btn">Sepetim</a>
+                                </div>
+
+                                {% endif %}
+
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img d-flex align-items-center justify-content-center"
+        style="background-image: url(../static/img/bg-img/bg-8.jpg);">
+        <div class="bradcumbContent">
+            <h2>OTELLER</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+
+
+    <!-- ##### Rooms Area Start ##### -->
+    <section class="rooms-area section-padding-0-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-6">
+                    <div class="section-heading text-center">
+                        <div class="line-"></div>
+                        <h2>Size uygun oteli seçin..</h2>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Single Rooms Area -->
+                {% for row in oteller%}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
+                        <!-- Thumbnail -->
+                        <div class="bg-thumbnail bg-img" style="background-image: url(../static/img/bg-img/1.jpg);">
+                        </div>
+                        <!-- Price -->
+                        <p class="price-from">{{row["yildiz"]}} Yıldızlı</p>
+
+                        <!-- Rooms Text -->
+                        <div class="rooms-text">
+                            <div class="line"></div>
+                            <h4>{{row["isim"]}}</h4>
+                            <p>{{row["adres"]}}</p>
+                            <p>% {{row["oran"]}}</p>
+                            {% if rol=="Admin" %}
+                            <form action="{{url_for('otelguncelleme')}}" method="POST" style="float: left;">
+                                <input type="hidden" name="otel_id" value="{{row['otel_id']}}">
+                                <button type="submit" class="btn btn-warning" style="cursor: pointer;">Güncelle</button>
+                            </form>
+
+                            <form action="{{url_for('otelsil')}}" method="POST" style="float: right;">
+                                <input type="hidden" name="otel_id" value="{{row['otel_id']}}">
+                                <button type="submit" class="btn btn-danger" style="cursor: pointer;">Sil</button>
+                            </form>
+                            {% endif %}
+
+                        </div>
+                        <!-- Book Room -->
+                        <form action="{{url_for('odalar')}}" method="POST">
+                            <input name="secilen_id" type="hidden" value="{{row['otel_id']}}">
+                            <button type="submit" class="book-room-btn btn palatin-btn">Odaları Gör</button>
+                        </form>
+
+                    </div>
+                </div>
+
+                {% endfor %}
+
+
+    </section>
+    <!-- ##### Rooms Area End ##### -->
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-area d-flex flex-wrap align-items-center">
+
+        <!-- Contact Info -->
+        <div class="contact-info" id="iletisim">
+            <div class="section-heading wow fadeInUp" data-wow-delay="100ms">
+                <div class="line-"></div>
+                <h2>İletişim</h2>
+
+                <h4 class="wow fadeInUp" data-wow-delay="300ms">DÜZCE ÜNİVERSİTESİ <br />Bilgisayar Mühendisliği
+                    <br />Web Programlama Projesi</h4>
+                <br>
+                <h5 class="wow fadeInUp" data-wow-delay="400ms">Mustafa Arı - 172113042</h5>
+                <h5 class="wow fadeInUp" data-wow-delay="400ms">İshak Küden - 172113028</h5>
+                <h5 class="wow fadeInUp" data-wow-delay="400ms">Ömer Şahin - 172113048</h5>
+                <h5 class="wow fadeInUp" data-wow-delay="400ms">Mustafa Pıçakçı - 172113044</h5>
+
+
+                <!-- Social Info -->
+                <div class="social-info mt-50 wow fadeInUp" data-wow-delay="600ms">
+                    <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </div>
+            </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-lg-5">
+                    <div class="footer-widget-area mt-50">
+
+                    </div>
+                </div>
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="footer-widget-area mt-50">
+                        <h6 class="widget-title mb-5">Find us on the map</h6>
+                        <img src="img/bg-img/footer-map.png" alt="">
+                    </div>
+                </div>
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-md-6 col-lg-3">
+
+                </div>
+
+                <!-- Copywrite Text -->
+                <div class="col-12">
+                    <div class="copywrite-text mt-30">
+                        <p><a href="#">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                                template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="../static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="../static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="../static/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="../static/js/active.js"></script>
+</body>
+
+</html>
