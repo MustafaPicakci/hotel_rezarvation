@@ -27,5 +27,5 @@ This project is a Flask web app.
 - User can view and delete old reservations
 
 # Contributors
-[www.google.com](#11-hello-world)
+ You can even [link to Google!](http://google.com)
 
