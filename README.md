@@ -5,10 +5,10 @@
 This project is a Flask web app.
 
 # Required Modules
--Datetime
--Babel
--SqlAlchemy
--Flask_user
--Sqlite3
--Flask_login
--Flask_bcrypt
+- Datetime
+- Babel
+- SqlAlchemy
+- Flask_user
+- Sqlite3
+- Flask_login
+- Flask_bcrypt
