@@ -18,13 +18,15 @@ This project is a Flask web app.
 - **User**
 
 # Admin Operations
-  **email: member@example.com**
-  **pass:  Password1
+- **email: member@example.com**
+- **pass:  Password1**
 - Admin Can add hotels and update otel data.
 - Admin can add rooms to a hotel and update room data.
 - admin can view and update reservations.
 
 # User Operations
+- **email: member@example.com**
+- **pass:  Password1**
 - User can register to the system and book a hotel.
 - User can view and delete old reservations
 
