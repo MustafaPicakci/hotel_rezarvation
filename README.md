@@ -13,9 +13,9 @@ This project is a Flask web app.
 - Flask_login
 - Flask_bcrypt
 
-** Two user types available.
-- Admin
-- User
+# Two user types available.
+- **Admin**
+- **User**
 
 # Admin Operations
 - Admin Can add hotels and update otel data.
