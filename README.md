@@ -33,10 +33,10 @@ This project is a Flask web app.
 # Contributors
 - [İshak Küden](https://github.com/IshaKuden)
 - [Mustafa Pıçakçı](https://github.com/MustafaPicakci)
-- [Mustafa Arı]()
+- [Mustafa Arı](https://github.com/mustafaari42)
 - [Ömer Şahin]()
 
 # Usage
 - Download the required modules with **pip**
 - Run **app2.py** with python
-- Visit localhost:5000 or http://127.0.0.1:5000/
+- Visit http://localhost:5000/ or http://127.0.0.1:5000/
