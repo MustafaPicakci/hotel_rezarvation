@@ -239,7 +239,7 @@ def create_app():
                     email_confirmed_at=datetime.datetime.utcnow(),
                     password=user_manager.hash_password(password),
                 )
-                role = Role.query.filter_by(name='Uye').one()
+                role = Role.query.filter_by(name='Agent').one()
                 user.roles.append(role)
                 db.session.add(user)
                 db.session.commit()
